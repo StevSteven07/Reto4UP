@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Admin") --
+@RequestMapping("/api/Admin") 
 public class AdminController {
 
     @Autowired
