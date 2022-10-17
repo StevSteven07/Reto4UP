@@ -1,5 +1,6 @@
 Reto4\despliegue\repository\AdminRepository.class
 Reto4\despliegue\controller\CategoryController.class
+Reto4\despliegue\entitys\DTOs\CompletedAndCancelled.class
 Reto4\despliegue\services\ReservationServices.class
 Reto4\despliegue\services\CategoryServices.class
 Reto4\despliegue\controller\ClientController.class
@@ -31,6 +32,7 @@ Reto4\despliegue\repository\crudRepository\MessageCrudRepository.class
 Reto4\despliegue\services\AdminServices.class
 Reto4\despliegue\R4Application.class
 Reto4\despliegue\repository\crudRepository\ReservationCrudRepository.class
+Reto4\despliegue\entitys\DTOs\TotalAndClient.class
 Reto4\despliegue\entitys\Score.class
 Reto4\despliegue\entitys\Category.class
 Reto4\despliegue\entitys\Reservation.class

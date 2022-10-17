@@ -2,7 +2,13 @@ package Reto4.despliegue.services;
 
 
 import Reto4.despliegue.entitys.Reservation;
+import Reto4.despliegue.entitys.DTOs.CompletedAndCancelled;
+import Reto4.despliegue.entitys.DTOs.TotalAndClient;
 import Reto4.despliegue.repository.ReservationRepository;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,4 +81,36 @@ public class ReservationServices {
         }
         return flag;
     }
+    
+    public List<Reservation> getReservationInPeriod(String dateA, String dateB){
+        SimpleDateFormat parser= new SimpleDateFormat("yyyy-MM-dd");
+        Date a= new Date();
+        Date b= new Date();
+        try{
+            a= parser.parse(dateA);
+            b= parser.parse(dateB);
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        if(a.before(b)){
+            return reservationRepository.getReservationInPeriod(a, b);
+        }else{
+            return new ArrayList<>();
+        }
+    }
+    
+    public CompletedAndCancelled getReservationStatusReport(){
+        List<Reservation> completed= reservationRepository.getReservationByStatus("completed");
+        List<Reservation> cancelled= reservationRepository.getReservationByStatus("cancelled");
+        
+        return new CompletedAndCancelled ((long)completed.size(),(long) cancelled.size());       
+        
+    }
+    
+    public List<TotalAndClient> getTopClientsReport(){
+        return reservationRepository.getTopClients();
+    }
+    
+    
+    
 }

@@ -2,6 +2,8 @@
 package Reto4.despliegue.controller;
 
 import Reto4.despliegue.entitys.Reservation;
+import Reto4.despliegue.entitys.DTOs.CompletedAndCancelled;
+import Reto4.despliegue.entitys.DTOs.TotalAndClient;
 import Reto4.despliegue.services.ReservationServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,4 +46,19 @@ public class ReservationController {
     public boolean delete(@PathVariable("id") int id) {
         return reservationServices.delete(id);
     }
+    
+    @GetMapping("/report-clients")
+    public List<TotalAndClient> getTopClientsReport(){
+        return reservationServices.getTopClientsReport();
+    }
+    
+    @GetMapping("/report-status")
+    public CompletedAndCancelled getReservationStatusReport(){
+        return reservationServices.getReservationStatusReport();
+    }
+    
+     @GetMapping("/report-dates/{fecha1}/{fecha2}")
+     public List<Reservation> getReservationsInPeriodReport(@PathVariable("fecha1") String fecha1, @PathVariable("fecha2") String fecha2){
+         return reservationServices.getReservationInPeriod(fecha1, fecha2);
+     }
 }
